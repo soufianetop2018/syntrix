@@ -91,6 +91,7 @@
           <span class="mail" id="mailText" dir="ltr"></span>
           <button class="copy" id="copyBtn"></button>
         </p>
+        <p class="social" id="social"></p>
       </div>
     </section>
   </main>
@@ -107,6 +108,23 @@
   <dialog class="viewer" id="viewer">
     <button class="x" id="viewerClose">✕</button>
     <img id="viewerImg" alt="">
+  </dialog>
+
+  <dialog class="gate" id="gate" aria-labelledby="gateApp">
+    <button class="x" id="gateClose" type="button">✕</button>
+    <div class="gate-app"><img id="gateImg" alt=""><div><b id="gateApp"></b><small id="gateMeta"></small></div></div>
+    <div id="gateFollow">
+      <h3 id="gateTitle"></h3>
+      <p class="gate-sub" id="gateSub"></p>
+      <div class="follow">
+        <a class="soc fb" id="fbBtn" target="_blank" rel="noopener"></a>
+        <a class="soc yt" id="ytBtn" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+    <p class="thanks" id="gateThanks" hidden></p>
+    <a class="btn primary big dl" id="dlBtn" hidden></a>
+    <button class="skip-dl" id="skipBtn" type="button" hidden></button>
+    <details class="how"><summary id="howTitle"></summary><ol id="howSteps"></ol></details>
   </dialog>
 
   <script src="js/data.js"></script>

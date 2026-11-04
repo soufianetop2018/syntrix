@@ -7,6 +7,19 @@ const CONTACT = {
   whatsapp: '',   // e.g. '2126XXXXXXXX' (international format, no +). Empty = button hidden.
 };
 
+// Follow window shown before an APK download. The site cannot check that the visitor really
+// followed (Facebook and YouTube do not allow it): tapping both buttons unlocks the download.
+// Empty link = that button is not asked. skip: true adds a small "download without following" link.
+const SOCIAL = {
+  facebook: 'https://www.facebook.com/profile.php?id=61596146630695',
+  youtube: 'https://www.youtube.com/channel/UC04-jN8BJ-JtnOQp5M28p6Q?sub_confirmation=1',
+};
+const GATE = { skip: false };
+
+// APK files live in the GitHub release "apps" of soufianetop2018/syntrix
+// (tools/release_apks.ps1 uploads / replaces them).
+const APK_BASE = 'https://github.com/soufianetop2018/syntrix/releases/download/apps/';
+
 const UI = {
   title: ['Syntrix — تطبيقات ويب وأندرويد وبرامج ويندوز', 'Syntrix — applications web, Android et Windows', 'Syntrix — web, Android and Windows apps'],
   metaDesc: ['أعمال Syntrix: أكثر من 20 تطبيقاً منجزاً في التعليم والألعاب والصحة وأدوات المحتوى وبرامج الشركات، بالعربية والفرنسية والإنجليزية.',
@@ -51,6 +64,21 @@ const UI = {
   copied: ['تم النسخ ✓', 'Copié ✓', 'Copied ✓'],
   mailSubject: ['مشروع تطبيق', 'Projet d\'application', 'App project'],
   footer: ['جميع التطبيقات المعروضة من تصميم وبرمجة Syntrix.', 'Toutes les applications présentées sont conçues et développées par Syntrix.', 'All apps shown are designed and built by Syntrix.'],
+  followUs: ['تابعنا', 'Suivez-nous', 'Follow us'],
+  apkBtn: ['تحميل APK', 'Télécharger l\'APK', 'Download APK'],
+  android: ['أندرويد 7 أو أحدث', 'Android 7 ou plus', 'Android 7 or newer'],
+  gateTitle: ['قبل التحميل، تابعنا 💙', 'Avant de télécharger, suivez-nous 💙', 'Before downloading, follow us 💙'],
+  gateSub: ['اضغط على الزرّين، ثم يظهر زر التحميل.', 'Appuyez sur les deux boutons, puis le téléchargement apparaît.', 'Tap both buttons and the download button appears.'],
+  fbBtn: ['تابع صفحتنا على فيسبوك', 'Suivre notre page Facebook', 'Follow our Facebook page'],
+  ytBtn: ['اشترك في قناتنا على يوتيوب', 'S\'abonner à notre chaîne YouTube', 'Subscribe to our YouTube channel'],
+  skip: ['تحميل بدون متابعة', 'Télécharger sans suivre', 'Download without following'],
+  thanks: ['شكراً لمتابعتك! 🎉', 'Merci de nous suivre ! 🎉', 'Thanks for following! 🎉'],
+  howTitle: ['كيف أثبّت التطبيق؟', 'Comment l\'installer ?', 'How do I install it?'],
+  howSteps: [
+    ['افتح الملف بعد اكتمال التحميل.', 'Ouvrez le fichier une fois téléchargé.', 'Open the file once the download is finished.'],
+    ['إذا طلب الهاتف ذلك، اسمح للمتصفح بتثبيت التطبيقات (مصادر غير معروفة).', 'Si le téléphone le demande, autorisez le navigateur à installer des applications (sources inconnues).', 'If the phone asks, allow your browser to install apps (unknown sources).'],
+    ['اضغط «تثبيت». إن ظهر تحذير Play Protect فاختر «تثبيت على أي حال».', 'Appuyez sur « Installer ». Si Play Protect affiche un avertissement, choisissez « Installer quand même ».', 'Tap "Install". If Play Protect shows a warning, choose "Install anyway".'],
+  ],
 };
 
 const CATS = [
@@ -61,6 +89,7 @@ const CATS = [
   { id: 'health', t: ['صحة', 'Santé', 'Health'] },
   { id: 'tools', t: ['أدوات ومحتوى', 'Outils & contenu', 'Tools & content'] },
   { id: 'biz', t: ['برامج للشركات', 'Entreprises', 'Business'] },
+  { id: 'apk', t: ['📱 للتحميل', '📱 À télécharger', '📱 Download'] },
 ];
 
 const SERVICES = [
@@ -149,21 +178,22 @@ const APPS = [
         'Jeu de course d\'obstacles en groupe sous Unity : cartes variées, amis, classement et missions en ligne.',
         'Party obstacle-race game in Unity: varied maps, friends, rankings and online missions.'] },
   { id: 'quran', cat: 'islam', plat: ['Android', 'Web'], link: 'https://quran-mushaf.onrender.com',
+    apk: { file: 'Quran.apk', mb: 1.9 },
     n: ['المصحف', 'Mushaf', 'Mushaf'],
     d: ['مصحف كامل بالرسم العثماني، 32 قارئاً مع تتبّع الآية وتحميل التلاوات، وتفسير ميسّر ومعاني الكلمات.',
         'Le Coran complet en écriture othmanie, 32 récitateurs avec suivi du verset et téléchargement, tafsir simplifié et sens des mots.',
         'The full Quran in Uthmani script, 32 reciters with verse highlighting and downloads, simple tafsir and word meanings.'] },
-  { id: 'mawaqiti', cat: 'islam', plat: ['Android', 'Web'],
+  { id: 'mawaqiti', cat: 'islam', plat: ['Android', 'Web'], apk: { file: 'Mawaqiti.apk', mb: 31 },
     n: ['مواقيتي', 'Mawaqiti', 'Mawaqiti'],
     d: ['أوقات الصلاة بدون إنترنت، أذان بأصوات 18 مؤذناً، منبّهات وأداة على الشاشة الرئيسية.',
         'Horaires de prière hors ligne, adhan de 18 muezzins, alarmes et widget sur l\'écran d\'accueil.',
         'Offline prayer times, adhan by 18 muezzins, alarms and a home-screen widget.'] },
-  { id: 'rachaqati', cat: 'health', plat: ['Android', 'Web'],
+  { id: 'rachaqati', cat: 'health', plat: ['Android', 'Web'], apk: { file: 'Rachaqati.apk', mb: 0.5 },
     n: ['رشاقتي', 'Rachaqati', 'Rachaqati'],
     d: ['حساب السعرات، برامج وجبات، وتمارين منزلية مرسومة خطوة بخطوة، مع حسابات ولوحة إدارة.',
         'Calories, plans de repas et exercices à la maison illustrés pas à pas, avec comptes et espace admin.',
         'Calorie counting, meal plans and illustrated home workouts, with accounts and an admin panel.'] },
-  { id: 'salamtek', cat: 'health', plat: ['Android', 'Web'],
+  { id: 'salamtek', cat: 'health', plat: ['Android', 'Web'], apk: { file: 'Salamtek.apk', mb: 0.4 },
     n: ['سلامتك', 'Salamtek', 'Salamtek'],
     d: ['دليل الأعراض: أسئلة ذكية تُحسب على الهاتف نفسه (102 حالة)، إسعافات أولية وأرقام الطوارئ في المغرب.',
         'Guide des symptômes : questions intelligentes calculées sur le téléphone (102 affections), premiers secours et numéros d\'urgence au Maroc.',
