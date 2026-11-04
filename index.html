@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syntrix — تطبيقات ويب وأندرويد وبرامج ويندوز</title>
+  <meta name="description" content="أعمال Syntrix: أكثر من 20 تطبيقاً منجزاً في التعليم والألعاب والصحة وأدوات المحتوى وبرامج الشركات، بالعربية والفرنسية والإنجليزية.">
+  <meta name="theme-color" content="#060a1f">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Syntrix — تطبيقات ويب وأندرويد وبرامج ويندوز">
+  <meta property="og:description" content="أكثر من 20 تطبيقاً منجزاً · عربي · Français · English">
+  <meta property="og:url" content="https://soufianetop2018.github.io/">
+  <meta property="og:image" content="https://soufianetop2018.github.io/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://soufianetop2018.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/mark-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#work">⬇</a>
+
+  <header class="top">
+    <div class="wrap top-in">
+      <a class="brand" href="#hero" aria-label="Syntrix">
+        <img src="img/mark-192.png" alt="" width="36" height="36"><span>Syntrix</span>
+      </a>
+      <nav class="nav" id="nav"></nav>
+      <div class="langs" role="group" aria-label="Language">
+        <button data-lang="ar">ع</button><button data-lang="fr">FR</button><button data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="wrap hero-in">
+        <div class="hero-text">
+          <p class="eyebrow" id="eyebrow"></p>
+          <h1 id="heroTitle"></h1>
+          <p class="lead" id="heroSub"></p>
+          <div class="cta">
+            <a class="btn primary" id="ctaMain" href="#contact"></a>
+            <a class="btn ghost" id="ctaWork" href="#work"></a>
+          </div>
+          <ul class="promises" id="promises"></ul>
+        </div>
+        <div class="hero-art">
+          <img src="img/logo.webp" alt="Syntrix — Code · Create · Innovate" width="900" height="600">
+        </div>
+      </div>
+      <div class="wrap">
+        <dl class="stats" id="stats"></dl>
+      </div>
+    </section>
+
+    <section class="sec" id="work">
+      <div class="wrap">
+        <h2 class="h2" id="workTitle"></h2>
+        <p class="sub" id="workSub"></p>
+        <div class="filters" id="filters" role="toolbar"></div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section class="sec alt" id="services">
+      <div class="wrap">
+        <h2 class="h2" id="servicesTitle"></h2>
+        <div class="services" id="servicesList"></div>
+      </div>
+    </section>
+
+    <section class="sec" id="process">
+      <div class="wrap">
+        <h2 class="h2" id="processTitle"></h2>
+        <ol class="steps" id="steps"></ol>
+      </div>
+    </section>
+
+    <section class="sec contact" id="contact">
+      <div class="wrap contact-in">
+        <h2 class="h2" id="contactTitle"></h2>
+        <p class="sub" id="contactSub"></p>
+        <div class="cta center">
+          <a class="btn primary big" id="mailBtn"></a>
+          <a class="btn wa big" id="waBtn" hidden target="_blank" rel="noopener"></a>
+        </div>
+        <p class="mail-line">
+          <span class="mail" id="mailText" dir="ltr"></span>
+          <button class="copy" id="copyBtn"></button>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <div class="brand small"><img src="img/mark-192.png" alt="" width="28" height="28"><span>Syntrix</span>
+        <small dir="ltr">Code • Create • Innovate</small></div>
+      <p id="footer"></p>
+      <p dir="ltr" class="copy-year">© <span id="year"></span> Syntrix · <a id="footMail"></a></p>
+    </div>
+  </footer>
+
+  <dialog class="viewer" id="viewer">
+    <button class="x" id="viewerClose">✕</button>
+    <img id="viewerImg" alt="">
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/images.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
